@@ -1,3 +1,5 @@
+
+
 Virtual Machines - Accelerated networking
 Azure Virtual Machines - Accelerated networking
 Accelerated networking enables the use of single root I/O virtualization (SR-IOV) to a VM for a virtual machine. This provides better network performance for the virtual machine. This helps reduce latency, jitter, and CPU utilization for workloads that run on the Azure virtual machines
