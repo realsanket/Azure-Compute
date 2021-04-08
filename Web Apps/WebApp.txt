@@ -1,0 +1,30 @@
+
+az appservice plan create --name "demoappplan2020" --resource-group "azuredemo" --sku Free
+
+az webapp create --name "demoapp2050" --resource-group "azuredemo" --plan "demoappplan2020"
+
+az webapp deployment source config --name "demoapp2050" --resource-group "azuredemo" --repo-url "https://github.com/alashro/WebAppNew" --branch master --manual-integration
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------
+
+WEB APP AZURE CLI
+$gitrepo="https://github.com/alashro/demoapp1000"
+
+az group create --location centralus --name staging-grp
+
+az appservice plan create --name newappplan2000 --resource-group staging-grp --sku B1
+
+az webapp create --name newapp2000 --resource-group staging-grp --plan newappplan2000 
+
+az webapp deployment source config --name newapp2000 --resource-group staging-grp --repo-url $gitrepo --branch master --manual-integration

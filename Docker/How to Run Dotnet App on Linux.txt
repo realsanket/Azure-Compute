@@ -1,0 +1,46 @@
+https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-5.0
+
+--ADD this on your APP
+  app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+sudo apt-get update
+--TO install Nginx
+sudo apt-get install nginx
+
+--To install microsoft package on Linux
+wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+
+sudo apt-get update
+
+--.Net 3.1
+sudo apt-get install dotnet-sdk-3.1
+---------
+
+--.Net 5
+sudo apt-get install -y dotnet-sdk-5.0
+-----------
+
+--Installtion Completed
+--Give the default file of ngnix full access etc/ngninx/sites-avaible default is the file Name
+sudo chmod 667 default
+
+--File changes
+server_name _;
+
+location / {
+# First attempt to serve request as file, then
+# as directory, then fall back to displaying a 404.
+proxy_pass http://localhost:5000;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection keep-alive;
+proxy_set_header Host $host;
+proxy_cache_bypass $http_upgrade;
+}
+
+--to restart the server
+sudo nginx -s reload
